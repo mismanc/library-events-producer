@@ -1,0 +1,9 @@
+{
+  "libraryEventId": 123,
+  "libraryEventType": "UPDATE",
+  "book": {
+    "id": 123,
+    "name": "Islam Between East And West",
+    "author": "Alija Izetbegovic"
+  }
+}
