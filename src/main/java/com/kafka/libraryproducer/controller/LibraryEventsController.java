@@ -49,5 +49,17 @@ public class LibraryEventsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
     }
 
+    @PostMapping("library-event-3")
+    public ResponseEntity<LibraryEvent> createLibraryEvent3(@RequestBody LibraryEvent libraryEvent) {
+        try {
+            log.info("library event : {} ", libraryEvent);
+            libraryEventsProducer.sendLibraryEventApproach3(libraryEvent);
+            log.info("After sending approach2 library event : ");
+        } catch (JsonProcessingException | ExecutionException | InterruptedException | TimeoutException e) {
+            throw new RuntimeException(e);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
+    }
+
 
 }
