@@ -39,7 +39,4 @@ public class KafkaProducerConfig {
         return new KafkaTemplate<>(producerFactory());
     }
 
-    public void setBootstrapAddress(String bootstrapAddress) {
-        this.bootstrapAddress = bootstrapAddress;
-    }
 }
