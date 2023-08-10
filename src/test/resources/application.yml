@@ -1,0 +1,9 @@
+spring:
+  kafka:
+    topic: 'library-events'
+    admin:
+      properties:
+        bootstrap-servers: ${spring.embedded.kafka.brokers}
+    producer:
+      bootstrap-servers: ${spring.embedded.kafka.brokers}
+    bootstrap-servers: ${spring.embedded.kafka.brokers}
