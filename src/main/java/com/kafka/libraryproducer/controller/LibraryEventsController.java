@@ -54,7 +54,7 @@ public class LibraryEventsController {
         try {
             log.info("library event : {} ", libraryEvent);
             libraryEventsProducer.sendLibraryEventApproach3(libraryEvent);
-            log.info("After sending approach2 library event : ");
+            log.info("After sending approach3 library event : ");
         } catch (JsonProcessingException | ExecutionException | InterruptedException | TimeoutException e) {
             throw new RuntimeException(e);
         }
