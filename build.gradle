@@ -33,7 +33,7 @@ dependencies {
 
 sourceSets {
     test {
-        java.srcDirs = ['src/test/java/com/kafka/libraryproducer/controller','src/test/java/com/kafka/libraryproducer/util']
+        java.srcDirs = ['src/test/java/it', 'src/test/java/unit']
     }
 }
 

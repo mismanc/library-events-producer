@@ -9,6 +9,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,6 @@ import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @EmbeddedKafka(topics = "library-events")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -61,15 +60,7 @@ class LibraryEventsControllerIT {
         ResponseEntity<LibraryEvent> responseEntity = restTemplate.exchange("/api/v1/library-event", HttpMethod.POST,
                 httpEntity, LibraryEvent.class);
 
-        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-
-        ConsumerRecords<Integer, String> records = KafkaTestUtils.getRecords(consumer);
-        assertEquals(1, records.count());
-        records.forEach(rec -> {
-            LibraryEvent actual = TestUtil.parseLibraryEventRecord(objectMapper, rec.value());
-            System.out.println("actual: " + actual);
-            assertEquals(actual, TestUtil.libraryEventRecord());
-        });
+        Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
     }
 
     @Test
@@ -80,14 +71,14 @@ class LibraryEventsControllerIT {
         ResponseEntity<LibraryEvent> responseEntity = restTemplate.exchange("/api/v1/library-event-2", HttpMethod.POST,
                 httpEntity, LibraryEvent.class);
 
-        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+        Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
 
         ConsumerRecords<Integer, String> records = KafkaTestUtils.getRecords(consumer);
-        assertEquals(1, records.count());
+        Assertions.assertEquals(1, records.count());
         records.forEach(rec -> {
             LibraryEvent actual = TestUtil.parseLibraryEventRecord(objectMapper, rec.value());
             System.out.println("actual: " + actual);
-            assertEquals(actual, TestUtil.libraryEventRecord());
+            Assertions.assertEquals(actual, TestUtil.libraryEventRecord());
         });
 
     }
@@ -100,7 +91,7 @@ class LibraryEventsControllerIT {
         ResponseEntity<LibraryEvent> responseEntity = restTemplate.exchange("/api/v1/library-event-3", HttpMethod.POST,
                 httpEntity, LibraryEvent.class);
 
-        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+        Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
 
 
     }

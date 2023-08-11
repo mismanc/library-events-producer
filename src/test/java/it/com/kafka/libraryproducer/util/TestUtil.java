@@ -1,5 +1,7 @@
 package com.kafka.libraryproducer.util;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kafka.libraryproducer.domain.Book;
 import com.kafka.libraryproducer.domain.LibraryEvent;
 import com.kafka.libraryproducer.domain.LibraryEventType;
@@ -24,6 +26,14 @@ public class TestUtil {
 
     public static LibraryEvent libraryEventRecordUpdate() {
         return new LibraryEvent(123, LibraryEventType.UPDATE, bookRecord());
+    }
+
+    public static LibraryEvent parseLibraryEventRecord(ObjectMapper objectMapper, String json){
+        try {
+            return objectMapper.readValue(json, LibraryEvent.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
