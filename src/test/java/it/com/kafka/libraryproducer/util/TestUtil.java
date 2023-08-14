@@ -13,7 +13,7 @@ public class TestUtil {
     }
 
     public static Book bookRecordInvalid() {
-        return new Book(123, "Alija Izetbegovic", "Islam Between East And West");
+        return new Book(null, "", "Islam Between East And West");
     }
 
     public static LibraryEvent libraryEventRecordWithEventId(Integer eventId) {
@@ -22,6 +22,10 @@ public class TestUtil {
 
     public static LibraryEvent libraryEventRecord() {
         return new LibraryEvent(null, LibraryEventType.NEW, bookRecord());
+    }
+
+    public static LibraryEvent libraryEventRecordWithInvalid() {
+        return new LibraryEvent(null, LibraryEventType.NEW, bookRecordInvalid());
     }
 
     public static LibraryEvent libraryEventRecordUpdate() {
