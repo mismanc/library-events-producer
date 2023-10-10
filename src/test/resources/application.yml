@@ -5,5 +5,8 @@ spring:
       properties:
         bootstrap-servers: ${spring.embedded.kafka.brokers}
     producer:
+      retries: 10
+      properties:
+        retries: 10
       bootstrap-servers: ${spring.embedded.kafka.brokers}
     bootstrap-servers: ${spring.embedded.kafka.brokers}
